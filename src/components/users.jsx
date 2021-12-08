@@ -22,8 +22,18 @@ const Users = () => {
 		setUsers((prevState) => prevState.filter(user => user._id !== userId));
 	};
 
+	const hideUsersTable = () => {
+		const usersTable = document.querySelector('#usersTable');
+		usersTable.style.display = 'none';
+	};
+
 	const renderPhrase = () => {
-		return users.length ? `${users.length} человек тусанет с тобой сегодня` : "Никто с тобой не тусанет";
+		if (users.length > 4 || users.length === 1) return `${users.length} человек тусанет с тобой сегодня`;
+		if (users.length > 1) return `${users.length} человека тусанет с тобой сегодня`;
+		if (users.length === 0) {
+			hideUsersTable();
+			return "Никто с тобой не тусанет";
+		};
 	};
 
 	const getBageClasses = () => {
@@ -33,7 +43,7 @@ const Users = () => {
 	return (
 		<>
 			<span id="message" className={getBageClasses()}>{renderPhrase()}</span>
-			<table className="table">
+			<table className="table" id="usersTable">
 				<thead>
 					<tr>
 						<th>Имя</th>
@@ -47,13 +57,13 @@ const Users = () => {
 				<tbody>
 					{(users.map((user) => {
 						return (
-							<tr>
-								<td key={user.name}>{user.name}</td>
-								<td key={user.qualities._id + user.name}>{handleQualities(user.qualities)}</td>
-								<td key={user.profession._id}>{user.profession.name}</td>
-								<td key={user._id + String(user.completedMeetings)}>{user.completedMeetings}</td>
-								<td key={user._id + String(user.rate)}>{`${user.rate} / 5`}</td>
-								<td key={user._id}>
+							<tr key={user._id}>
+								<td>{user.name}</td>
+								<td>{handleQualities(user.qualities)}</td>
+								<td>{user.profession.name}</td>
+								<td>{user.completedMeetings}</td>
+								<td>{`${user.rate} / 5`}</td>
+								<td>
 									<button type="button" className="btn btn-danger" onClick={() => handleDelete(user._id)}>
 										delete
 									</button></td>
