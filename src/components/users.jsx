@@ -47,13 +47,13 @@ const Users = () => {
 				<tbody>
 					{(users.map((user) => {
 						return (
-							<tr key={user._id}>
-								<td>{user.name}</td>
-								<td >{handleQualities(user.qualities)}</td>
+							<tr>
+								<td key={user.name}>{user.name}</td>
+								<td key={user.qualities._id + user.name}>{handleQualities(user.qualities)}</td>
 								<td key={user.profession._id}>{user.profession.name}</td>
-								<td>{user.completedMeetings}</td>
-								<td>{`${user.rate} / 5`}</td>
-								<td>
+								<td key={user._id + String(user.completedMeetings)}>{user.completedMeetings}</td>
+								<td key={user._id + String(user.rate)}>{`${user.rate} / 5`}</td>
+								<td key={user._id}>
 									<button type="button" className="btn btn-danger" onClick={() => handleDelete(user._id)}>
 										delete
 									</button></td>
