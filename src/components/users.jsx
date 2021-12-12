@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from "../api/index";
+import User from "./user";
 
 const Users = () => {
 	const [users, setUsers] = useState(api.users.fetchAll());
@@ -43,6 +44,7 @@ const Users = () => {
 	return (
 		<>
 			<span id="message" className={getBageClasses()}>{renderPhrase()}</span>
+
 			<table className="table" id="usersTable">
 				<thead>
 					<tr>
@@ -54,22 +56,11 @@ const Users = () => {
 						<th>     </th>
 					</tr>
 				</thead>
+
 				<tbody>
-					{(users.map((user) => {
-						return (
-							<tr key={user._id}>
-								<td>{user.name}</td>
-								<td>{handleQualities(user.qualities)}</td>
-								<td>{user.profession.name}</td>
-								<td>{user.completedMeetings}</td>
-								<td>{`${user.rate} / 5`}</td>
-								<td>
-									<button type="button" className="btn btn-danger" onClick={() => handleDelete(user._id)}>
-										delete
-									</button></td>
-							</tr>);
-					}
-					))}
+					{users.map(user =>
+						<User key={user._id} {...user}/>
+					)}
 				</tbody>
 			</table>
 		</>
