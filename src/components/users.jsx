@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
-import api from "../api/index";
+import React from 'react';
 import User from "./user";
 
 const Users = (props) => {
-	let newUsers = Object.values(props);
 
-	console.log(newUsers);
-
-	const hideUsersTable = () => {
-		const usersTable = document.querySelector('#usersTable');
-		usersTable.style.display = 'none';
-	};
+	let newUsers = Object.values(props).filter(user => typeof user !== "function");
 
 	return (
 		<>
@@ -22,12 +15,12 @@ const Users = (props) => {
 						<th>Профессия</th>
 						<th>Встретился, раз</th>
 						<th>Оценка</th>
+						<th>Избранное</th>
 						<th>     </th>
 					</tr>
 				</thead>
-
 				<tbody>
-					{newUsers.map(user => <User key={user._id} {...user} />)}
+					{newUsers.map(user => <User key={user._id} {...user} onDelete={props.onDeleteUser} />)}
 				</tbody>
 			</table>
 		</>

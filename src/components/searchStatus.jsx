@@ -1,16 +1,17 @@
 import React from 'react';
 
-const SearchStatus = () => {
-	const uuu = 5;
+const SearchStatus = (props) => {
+
+	const numberOfUsers = Object.keys(props).length;
 
 	const getBageClasses = () => {
-		return uuu ? "badge bg-primary" : "badge bg-danger";
+		return numberOfUsers ? "badge bg-primary" : "badge bg-danger";
 	};
 
 	const renderPhrase = () => {
-		if (uuu > 4 || uuu === 1) return `${uuu} человек тусанет с тобой сегодня`;
-		if (uuu > 1) return `${uuu} человека тусанет с тобой сегодня`;
-		if (uuu === 0) {
+		if (numberOfUsers > 4 || numberOfUsers === 1) return `${numberOfUsers} человек тусанет с тобой сегодня`;
+		if (numberOfUsers > 1) return `${numberOfUsers} человека тусанет с тобой сегодня`;
+		if (numberOfUsers === 0) {
 			// hideUsersTable();
 			return "Никто с тобой не тусанет";
 		};
