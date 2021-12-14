@@ -20,7 +20,13 @@ const Users = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{newUsers.map(user => <User key={user._id} {...user} onDelete={props.onDeleteUser} />)}
+					{newUsers.map(user =>
+						<User
+							key={user._id}
+							{...user}
+							onDelete={props.onDeleteUser}
+							onStatusChange={props.onUserStatusChange}
+						/>)}
 				</tbody>
 			</table>
 		</>

@@ -4,6 +4,7 @@ import Down from "../assets/hand_thumbs_down.png";
 
 
 const Bookmark = (props) => {
+	
 	if (props.favorite) {
 		return <img src={Up} alt="Up" width="20" height="20"></img>;
 	}

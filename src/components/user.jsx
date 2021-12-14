@@ -5,13 +5,17 @@ import Bookmark from "./bookmark";
 const User = (props) => {
 
 	return (
-		<tr>
+		<tr key={props._id}>
 			<td>{props.name}</td>
 			<td>{<Quality {...props} />}</td>
 			<td>{props.profession.name}</td>
 			<td>{props.completedMeetings}</td>
 			<td>{`${props.rate} / 5`}</td>
-			<td>{<Bookmark {...props} />}</td>
+			<td>
+				{<span onClick={() => props.onStatusChange(props._id)}>
+					<Bookmark {...props} />
+				</span>} 
+			</td>
 			<td>
 				<button type="button" className="btn btn-danger" onClick={() => props.onDelete(props._id)}>
 					delete

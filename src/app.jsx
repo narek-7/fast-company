@@ -5,11 +5,10 @@ import SearchStatus from "./components/searchStatus";
 
 const App = () => {
 	const initialUsers = api.users.fetchAll();
-	addStatus();
-	const [users, setUsers] = useState(initialUsers);
-console.log(users);
+	addStatusToUsers();
+	let [users, setUsers] = useState(initialUsers);
 
-	function addStatus() {
+	function addStatusToUsers() {
 		for (const u in initialUsers) {
 			let status = {};
 			status.favorite = (Math.floor(Math.random() * 2));
@@ -17,10 +16,21 @@ console.log(users);
 		}
 	}
 
-	const handleDelete = (userId) => {
+	const handleStatusChange = (userId) => {
+		let newUsers = users.map(user => {
+			if (user._id === userId) {
+				user.favorite = Number(!user.favorite);
+				console.log(user.favorite);
+			};
+			return user;
+		});
+		setUsers(newUsers); //! question   why here I must use setUsers
+	};
+
+	function handleDelete(userId) {
 		setUsers((prevState) => prevState.filter(user => user._id !== userId));
 		hideUsersTable(users.length);
-	};
+	}
 
 	const hideUsersTable = (numberOfUsers) => {
 		if (numberOfUsers === 1) {
@@ -31,7 +41,7 @@ console.log(users);
 	return (
 		<>
 			<SearchStatus {...users} />
-			<Users {...users} onDeleteUser={handleDelete} />
+			<Users {...users} onDeleteUser={handleDelete} onUserStatusChange={handleStatusChange} />
 		</>
 	);
 };
