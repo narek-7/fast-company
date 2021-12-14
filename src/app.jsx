@@ -24,7 +24,7 @@ const App = () => {
 			};
 			return user;
 		});
-		setUsers(newUsers); //! question   why here I must use setUsers
+		setUsers(newUsers); //! question   why here I must use setUsers and id work bad in 1st click
 	};
 
 	function handleDelete(userId) {
