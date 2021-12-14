@@ -17,14 +17,13 @@ const App = () => {
 	}
 
 	const handleStatusChange = (userId) => {
-		let newUsers = users.map(user => {
+		setUsers(users.map(user => {
 			if (user._id === userId) {
 				user.favorite = Number(!user.favorite);
-				console.log(user.favorite);
 			};
 			return user;
-		});
-		setUsers(newUsers); //! question   why here I must use setUsers and id work bad in 1st click
+		}));
+		//! question   why here I must use setUsers and id work bad in 1st click
 	};
 
 	function handleDelete(userId) {

@@ -20,3 +20,15 @@ td > .badge{
 	font-size: 22px;
 	padding: 8px;
 }
+
+svg:hover {
+	cursor: grab;
+}
+
+svg:active {
+	cursor: grabbing;
+}
+
+svg:focus {
+	cursor: grab;
+}
