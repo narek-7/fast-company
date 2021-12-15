@@ -4,7 +4,7 @@ import api from "./api/index";
 import SearchStatus from "./components/searchStatus";
 
 const App = () => {
-	const initialUsers = api.users.fetchAll();
+	let initialUsers = api.users.fetchAll();
 	addStatusToUsers();
 	let [users, setUsers] = useState(initialUsers);
 
@@ -23,7 +23,6 @@ const App = () => {
 			};
 			return user;
 		}));
-		//! question   why here I must use setUsers and id work bad in 1st click
 	};
 
 	function handleDelete(userId) {
