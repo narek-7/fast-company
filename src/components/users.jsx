@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Pagination from './pagination';
 import User from "./user";
 
 const Users = (props) => {
 
 	let newUsers = Object.values(props).filter(user => typeof user !== "function");
+	const count = newUsers.length;
+	const pageSize = 4;
+	const [currentPage, setCurrentPage] = useState(1);
+	const handlePageChange = (pageIndex) => {
+		setCurrentPage(pageIndex);
+	};
 
 	return (
 		<>
@@ -29,6 +36,11 @@ const Users = (props) => {
 						/>)}
 				</tbody>
 			</table>
+			<Pagination
+				itemsCount={count}
+				pageSize={pageSize}
+				currentPage={currentPage}
+				onPageChange={handlePageChange} />
 		</>
 	);
 };
