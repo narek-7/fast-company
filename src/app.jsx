@@ -5,15 +5,14 @@ import SearchStatus from "./components/searchStatus";
 
 const App = () => {
 	let initialUsers = api.users.fetchAll();
-	addStatusToUsers();
-	let [users, setUsers] = useState(initialUsers);
 
-	function addStatusToUsers() {
-		for (const u in initialUsers) {
-			let status = {};
-			status.favorite = (Math.floor(Math.random() * 2));
-			initialUsers[u] = { ...initialUsers[u], ...status };
-		}
+	const newUsersArray = addStatusToUsers(initialUsers);
+	let [users, setUsers] = useState(newUsersArray);
+
+	function addStatusToUsers(prevUsers) {
+		return prevUsers.map(user => {
+			return { ...user, favorite: Math.floor(Math.random() * 2) };
+		});
 	}
 
 	const handleStatusChange = (userId) => {

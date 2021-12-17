@@ -1,6 +1,9 @@
 import React from 'react';
 import Quality from "./quality";
 import Bookmark from "./bookmark";
+import PropTypes from 'prop-types';
+
+
 
 const User = (props) => {
 
@@ -14,7 +17,7 @@ const User = (props) => {
 			<td>
 				{<span onClick={() => props.onStatusChange(props._id)}>
 					<Bookmark {...props} />
-				</span>} 
+				</span>}
 			</td>
 			<td>
 				<button type="button" className="btn btn-danger" onClick={() => props.onDelete(props._id)}>
@@ -24,5 +27,10 @@ const User = (props) => {
 		</tr>
 	);
 };
+
+User.propTypes = {
+	props: PropTypes.object,
+};
+
 
 export default User;

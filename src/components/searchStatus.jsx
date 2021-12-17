@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SearchStatus = (props) => {
 
@@ -21,5 +22,10 @@ const SearchStatus = (props) => {
 		<span id="message" className={getBageClasses()}>{renderPhrase()}</span>
 	);
 };
+
+SearchStatus.propTypes = {
+	props: PropTypes.object,
+};
+
 
 export default SearchStatus;

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Pagination from './pagination';
 import User from "./user";
+import { paginate } from "../utils/paginate";
+import PropTypes from 'prop-types';
+
 
 const Users = (props) => {
 
@@ -11,6 +14,8 @@ const Users = (props) => {
 	const handlePageChange = (pageIndex) => {
 		setCurrentPage(pageIndex);
 	};
+
+	const userCrop = paginate(newUsers, currentPage, pageSize);
 
 	return (
 		<>
@@ -27,7 +32,7 @@ const Users = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{newUsers.map(user =>
+					{userCrop.map(user =>
 						<User
 							key={user._id}
 							{...user}
@@ -43,6 +48,10 @@ const Users = (props) => {
 				onPageChange={handlePageChange} />
 		</>
 	);
+};
+
+Users.propTypes = {
+	props: PropTypes.object,
 };
 
 export default Users;
