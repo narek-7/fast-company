@@ -24,7 +24,7 @@ const SearchStatus = (props) => {
 };
 
 SearchStatus.propTypes = {
-	props: PropTypes.object,
+	props: PropTypes.object.isRequired,
 };
 
 
