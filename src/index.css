@@ -1,34 +1,34 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   margin: 0;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
 }
 
-td > .badge{
-	margin-right: 8px;
+td > .badge {
+   margin-right: 8px;
 }
 
 #message {
-	font-size: 22px;
-	padding: 8px;
+   font-size: 22px;
+   padding: 8px;
 }
 
 svg:hover {
-	cursor: grab;
+   cursor: grab;
 }
 
 svg:active {
-	cursor: grabbing;
+   cursor: grabbing;
 }
 
 svg:focus {
-	cursor: grab;
+   cursor: grab;
 }
