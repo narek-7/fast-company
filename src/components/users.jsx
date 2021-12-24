@@ -30,7 +30,6 @@ const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
    }, [selectedProf]);
 
    const handleProfessionSelect = (item) => {
-      console.log("usersList", usersList);
       setSelectedProf(item);
    };
 
@@ -41,8 +40,6 @@ const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
    const filteredUsers = selectedProf
       ? usersList.filter((user) => user.profession.name === selectedProf.name)
       : usersList;
-
-   console.log("filteredUsers", filteredUsers);
 
    const count = filteredUsers.length;
 

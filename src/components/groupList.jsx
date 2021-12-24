@@ -9,7 +9,6 @@ const GroupList = ({
    selectedItem
 }) => {
    const profList = Object.keys(items);
-   console.log("items", items);
    return (
       <ul className="list-group">
          {profList.map((item) => (

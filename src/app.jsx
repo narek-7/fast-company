@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Users from "./components/users";
 import api from "./api/index";
 
 const App = () => {
-   const initialUsers = api.users.fetchAll();
+   let initialUsers = [];
+   let newUsersArray = [];
+   const [users, setUsers] = useState([]);
 
-   const newUsersArray = addStatusToUsers(initialUsers);
-   const [users, setUsers] = useState(newUsersArray);
+   useEffect(() => {
+      api.users.fetchAll().then((data) => {
+         initialUsers = data;
+         newUsersArray = addStatusToUsers(initialUsers);
+         setUsers(newUsersArray);
+      });
+   }, []);
 
    function addStatusToUsers(prevUsers) {
       return prevUsers.map((user) => {
@@ -36,15 +43,19 @@ const App = () => {
       }
    };
 
-   return (
-      <>
-         <Users
-            usersList={users}
-            onDeleteUser={handleDelete}
-            onUserStatusChange={handleStatusChange}
-         />
-      </>
-   );
+   const handleUsersList = () => {
+      if (users.length) {
+         return (
+            <Users
+               usersList={users}
+               onDeleteUser={handleDelete}
+               onUserStatusChange={handleStatusChange}
+            />
+         );
+      }
+   };
+
+   return <>{handleUsersList(users)}</>;
 };
 
 export default App;
