@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Users from "./components/users";
 import api from "./api/index";
-import SearchStatus from "./components/searchStatus";
 
 const App = () => {
    const initialUsers = api.users.fetchAll();
@@ -39,9 +38,8 @@ const App = () => {
 
    return (
       <>
-         <SearchStatus {...users} />
          <Users
-            {...users}
+            usersList={users}
             onDeleteUser={handleDelete}
             onUserStatusChange={handleStatusChange}
          />

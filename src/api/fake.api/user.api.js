@@ -6,6 +6,7 @@ const professions = {
    actor: { _id: "67rdca3eeb7f6fgeed471824", name: "Актер" },
    cook: { _id: "67rdca3eeb7f6fgeed471829", name: "Повар" }
 };
+
 const qualities = {
    tedious: {
       _id: "67rdca3eeb7f6fgeed471198",

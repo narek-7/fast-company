@@ -15,7 +15,10 @@ module.exports = {
 	rules: {
 		indent: ["error", 3], // tab = 3
 		semi: [2, "always"], // " "
-		"space-before-function-paren": ["error", "never"], // function()
+		"space-before-function-paren": [
+			"error",
+			{ anonymous: "always", named: "never" },
+		], // function()
 		quotes: ["error", "double", { allowTemplateLiterals: true }], //
 	},
 };
