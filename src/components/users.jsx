@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import { paginate } from "../utils/paginate";
 import SearchStatus from "./searchStatus";
 import Pagination from "./pagination";
+import UsersTable from "./usersTable";
 import GroupList from "./groupList";
 import PropTypes from "prop-types";
 import api from "../api/index";
-import User from "./user";
+import _ from "lodash";
 
-const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
-   const pageSize = 2;
+const Users = ({ usersList, ...rest }) => {
+   const pageSize = 8;
    const [currentPage, setCurrentPage] = useState(1);
    const [professions, setProfessions] = useState();
    const [selectedProf, setSelectedProf] = useState();
+   const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" });
 
    useEffect(() => {
       api.professions.fetchAll().then((data) => {
@@ -40,20 +42,23 @@ const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
    const filteredUsers = selectedProf
       ? usersList.filter((user) => user.profession.name === selectedProf.name)
       : usersList;
-
+   const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order]);
+   const userCrop = paginate(sortedUsers, currentPage, pageSize);
    const count = filteredUsers.length;
-
-   const userCrop = paginate(filteredUsers, currentPage, pageSize);
 
    const clearFilteredUsers = () => {
       setSelectedProf();
       setCurrentPage(1);
    };
 
+   const handleSort = (item) => {
+      setSortBy(item);
+   };
+
    return (
       <div className="d-flex">
          {professions && (
-            <div className="d-flex flex-column flex-shrink-0 p-3">
+            <div className="d-flex flex-column flex-shrink p-3">
                <GroupList
                   items={professions}
                   onItemSelect={handleProfessionSelect}
@@ -67,39 +72,24 @@ const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
                </button>
             </div>
          )}
+
          <div className="d-flex flex-column">
-            <SearchStatus {...filteredUsers} />
+            <SearchStatus itemsCount={count} />
             {count > 0 && (
-               <table className="table" id="usersTable">
-                  <thead>
-                     <tr>
-                        <th>Имя</th>
-                        <th>Качества</th>
-                        <th>Профессия</th>
-                        <th>Встретился, раз</th>
-                        <th>Оценка</th>
-                        <th>Избранное</th>
-                        <th> </th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {userCrop.map((user) => (
-                        <User
-                           key={user._id}
-                           {...user}
-                           onDelete={onDeleteUser}
-                           onStatusChange={onUserStatusChange}
-                        />
-                     ))}
-                  </tbody>
-               </table>
+               <UsersTable
+                  users={userCrop}
+                  onSort={handleSort}
+                  selectedSort={sortBy}
+                  {...rest}
+               />
             )}
+
             <div className="d-flex justify-content-center">
                <Pagination
                   itemsCount={count}
                   pageSize={pageSize}
                   currentPage={currentPage}
-                  onPageChange={handlePageChange}
+                  {...handlePageChange}
                />
             </div>
          </div>
@@ -108,9 +98,7 @@ const Users = ({ usersList, onDeleteUser, onUserStatusChange }) => {
 };
 
 Users.propTypes = {
-   usersList: PropTypes.array.isRequired,
-   onDeleteUser: PropTypes.func.isRequired,
-   onUserStatusChange: PropTypes.func.isRequired
+   usersList: PropTypes.array.isRequired
 };
 
 export default Users;

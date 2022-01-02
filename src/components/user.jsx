@@ -13,7 +13,7 @@ const User = (props) => {
          <td>{`${props.rate} / 5`}</td>
          <td>
             {
-               <span onClick={() => props.onStatusChange(props._id)}>
+               <span onClick={() => props.onUserStatusChange(props._id)}>
                   <Bookmark status={props.favorite} />
                </span>
             }
@@ -22,7 +22,7 @@ const User = (props) => {
             <button
                type="button"
                className="btn btn-danger"
-               onClick={() => props.onDelete(props._id)}
+               onClick={() => props.onDeleteUser(props._id)}
             >
                delete
             </button>
@@ -35,11 +35,11 @@ User.propTypes = {
    _id: PropTypes.string.isRequired,
    name: PropTypes.string.isRequired,
    profession: PropTypes.object,
-   onDelete: PropTypes.func.isRequired,
+   onDeleteUser: PropTypes.func.isRequired,
    rate: PropTypes.number.isRequired,
    completedMeetings: PropTypes.number.isRequired,
    favorite: PropTypes.number.isRequired,
-   onStatusChange: PropTypes.func.isRequired
+   onUserStatusChange: PropTypes.func.isRequired
 };
 
 export default User;

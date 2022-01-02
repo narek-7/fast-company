@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const SearchStatus = (props) => {
-   const numberOfUsers = Object.keys(props).length;
+const SearchStatus = ({ itemsCount }) => {
+   const numberOfUsers = itemsCount;
 
    const getBageClasses = () => {
       return numberOfUsers ? "badge bg-primary" : "badge bg-danger";
@@ -15,7 +16,7 @@ const SearchStatus = (props) => {
          return `${numberOfUsers} человека тусанет с тобой сегодня`;
       }
       if (numberOfUsers === 0) {
-         return "Никто с тобой не тусанет"; // hideUsersTable();
+         return "Никто с тобой не тусанет";
       }
    };
 
@@ -24,6 +25,10 @@ const SearchStatus = (props) => {
          {renderPhrase()}
       </span>
    );
+};
+
+SearchStatus.propTypes = {
+   itemsCount: PropTypes.number
 };
 
 export default SearchStatus;

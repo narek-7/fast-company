@@ -34,28 +34,15 @@ const App = () => {
 
    function handleDelete(userId) {
       setUsers((prevState) => prevState.filter((user) => user._id !== userId));
-      hideUsersTable(users.length);
    }
 
-   const hideUsersTable = (numberOfUsers) => {
-      if (numberOfUsers === 1) {
-         document.querySelector("#usersTable").style.display = "none";
-      }
-   };
-
-   const handleUsersList = () => {
-      if (users.length) {
-         return (
-            <Users
-               usersList={users}
-               onDeleteUser={handleDelete}
-               onUserStatusChange={handleStatusChange}
-            />
-         );
-      }
-   };
-
-   return <>{handleUsersList(users)}</>;
+   return (
+      <Users
+         usersList={users}
+         onDeleteUser={handleDelete}
+         onUserStatusChange={handleStatusChange}
+      />
+   );
 };
 
 export default App;

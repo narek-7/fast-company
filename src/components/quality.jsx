@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Quality = (props) => {
+const Quality = ({ qualitiesList }) => {
    return (
       <>
-         {props.qualities.map((quality) => {
+         {qualitiesList.map((quality) => {
             return (
                <span
                   className={`badge rounded-pill bg-${quality.color}`}
@@ -19,8 +19,8 @@ const Quality = (props) => {
 };
 
 Quality.propTypes = {
-   _id: PropTypes.string.isRequired,
-   qualities: PropTypes.array
+   _id: PropTypes.string,
+   qualitiesList: PropTypes.array.isRequired
 };
 
 export default Quality;
