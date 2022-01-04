@@ -22,13 +22,5 @@ td > .badge {
 }
 
 svg:hover {
-   cursor: grab;
-}
-
-svg:active {
-   cursor: grabbing;
-}
-
-svg:focus {
-   cursor: grab;
+   cursor: pointer;
 }

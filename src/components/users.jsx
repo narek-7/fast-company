@@ -64,8 +64,6 @@ const Users = () => {
       setUsers((prevState) => prevState.filter((user) => user._id !== userId));
    }
 
-   // -------------------------
-
    const handleProfessionSelect = (item) => {
       setSelectedProf(item);
    };

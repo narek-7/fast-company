@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Arrow from "./arrow";
 
 const TableHeader = ({ onSort, selectedSort, columns }) => {
+   const [direction, setDirection] = useState({
+      columnName: "",
+      columnOrder: "asc"
+   });
+
    const handleSort = (item) => {
       if (selectedSort.path === item) {
+         const activOrder = selectedSort.order === "asc" ? "desc" : "asc";
          onSort({
             ...selectedSort,
-            order: selectedSort.order === "asc" ? "desc" : "asc"
+            order: activOrder
          });
+         handleDirection(item, activOrder);
       } else {
          onSort({ path: item, order: "asc" });
+         handleDirection(item, "asc");
       }
+   };
+
+   const handleDirection = (item, order) => {
+      setDirection({ columnName: item, columnOrder: order });
    };
 
    return (
@@ -28,17 +41,15 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                      {...{ role: columns[column].path ? "button" : "" }}
                   >
                      {columns[column].name}
+                     {
+                        <Arrow
+                           direction={direction}
+                           column={columns[column].path}
+                        />
+                     }
                   </th>
                );
             })}
-            {/* <th>Качества</th>
-            <th onClick={() => handleSort("profession.name")}>Профессия</th>
-            <th onClick={() => handleSort("completedMeetings")}>
-               Встретился, раз
-            </th>
-            <th onClick={() => handleSort("rate")}>Оценка</th>
-            <th onClick={() => handleSort("favorite")}>Избранное</th>
-            <th> </th> */}
          </tr>
       </thead>
    );
