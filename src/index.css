@@ -24,3 +24,12 @@ td > .badge {
 svg:hover {
    cursor: pointer;
 }
+
+#activeUser {
+   margin-left: 5px;
+   padding: 10px;
+}
+
+span {
+   margin: 5px;
+}
