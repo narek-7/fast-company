@@ -10,8 +10,13 @@ const Login = () => {
       }));
    };
 
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(data);
+   };
+
    return (
-      <form action="">
+      <form onSubmit={handleSubmit}>
          <TextField
             label="Email"
             name="email"
@@ -25,6 +30,8 @@ const Login = () => {
             value={data.password}
             onChange={handleChange}
          />
+         {/* for creating not submit button, we need to change the type of  the button */}
+         <button type="submit">Submit</button>
       </form>
    );
 };
