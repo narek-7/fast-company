@@ -15,15 +15,6 @@ const TableBody = ({ data, columns }) => {
       return _.get(item, columns[column].path);
    };
 
-   // const handleContentType = (item, column) => {
-   //    if (column === "name") {
-   //       return (
-   //          <Link to={`users/${item._id}`}>{renderContent(item, column)}</Link>
-   //       );
-   //    }
-   //    return <>{renderContent(item, column)}</>;
-   // };
-
    return (
       <tbody>
          {data.map((item) => (
