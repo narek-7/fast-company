@@ -30,7 +30,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
                   onClick={showTogglePasswords}
                >
                   <i
-                     className={"bi bi-eye" + (!showPassword ? "-slash" : "")}
+                     className={"bi bi-eye" + (showPassword ? "-slash" : "")}
                   ></i>
                </button>
             )}
