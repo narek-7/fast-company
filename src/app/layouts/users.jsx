@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SearchedPhrase from "../components/searchedPhrase";
-import SearchStatus from "../components/searchStatus";
+import SearchStatus from "../components/ui/searchStatus";
 import UsersTable from "../components/usersTable";
-import Pagination from "../components/pagination";
-import GroupList from "../components/groupList";
+import Pagination from "../components/common/pagination";
+import GroupList from "../components/common/groupList";
 import { paginate } from "../utils/paginate";
 import PropTypes from "prop-types";
 import api from "../api/index";

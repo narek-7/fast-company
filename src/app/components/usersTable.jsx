@@ -1,17 +1,17 @@
 import React from "react";
-import TableHeader from "./tableHeader";
-import TableBody from "./tableBody";
+import TableHeader from "./common/table/tableHeader";
+import TableBody from "./common/table/tableBody";
+import Table from "./common/table/table";
+import Bookmark from "./common/bookmark";
+import Quality from "./ui/quality";
 import PropTypes from "prop-types";
-import Bookmark from "./bookmark";
-import Quality from "./quality";
-import Table from "./table";
 
 const UsersTable = ({
-   users,
-   onSort,
-   selectedSort,
    onUserStatusChange,
-   onDeleteUser
+   selectedSort,
+   onDeleteUser,
+   onSort,
+   users
 }) => {
    const columns = {
       name: { path: "name", name: "Имя" },

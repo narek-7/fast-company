@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/index";
 import { useParams, useHistory } from "react-router-dom";
-import Quality from "./quality";
+import Quality from "./ui/quality";
 // import { Link } from "react-router-dom";
 
 const User = () => {
